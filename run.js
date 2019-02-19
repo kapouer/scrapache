@@ -1,6 +1,7 @@
 var W = require('webkitgtk');
 var fs = require('fs');
 var URL = require('url');
+var Path = require('path');
 var mkdirp = require('mkdirp');
 var appname = process.argv.pop();
 var sitemap = fs.readFileSync(`${appname}/sitemap.txt`).toString().split("\n");

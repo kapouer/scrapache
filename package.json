@@ -1,0 +1,15 @@
+{
+  "name": "scrapache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jérémy Lal <kapouer@melix.org>",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "webkitgtk": "^4.10.0"
+  }
+}

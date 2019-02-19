@@ -35,13 +35,13 @@ function getOne(url) {
 		this.run(function(done) {
 			done(null, document.querySelector('pre').innerText);
 		}, function(err, txt) {
-			var filepath = URL.parse(url).pathname;
+			var filepath = appname + URL.parse(url).pathname;
 			var dirpath = Path.dirname(filepath);
 			var filename = Path.basename(filepath);
 			if (filename == "") filepath += "index";
 			console.log("writing to", filepath);
 			mkdirp.sync(dirpath);
-			fs.writeFileSync(`${appname}${filepath}.html`, txt);
+			fs.writeFileSync(`${filepath}.html`, txt);
 			setTimeout(nextOne, 500);
 		});
 	});

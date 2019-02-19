@@ -16,20 +16,14 @@ function nextOne() {
 function getOne(url) {
 	if (!url) return finish();
 	console.log("trying", url);
-	w.load(`https://webcache.googleusercontent.com/search?q=cache:Buu0KS3DcNIJ:${url}&hl=fr&gl=fr&strip=0&vwsrc=1`, {
-		"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36",
-		navigation: true
-	}, function(err) {
+	w.load(`https://webcache.googleusercontent.com/search?q=cache:${url}&hl=fr&gl=fr&strip=0&vwsrc=1`, function(err) {
 		if (err) {
 			if (err == 503) {
 				console.warn("stop on 503");
 				errors.push(url);
-				setTimeout(nextOne, 500);
-//				errors = errors.concat(sitemap);
-//				finish();
+				errors = errors.concat(sitemap);
+				finish();
 			}
-		} else {
-			console.log("continue");
 		}
 	}).once('load', function() {
 		this.run(function(done) {
@@ -42,7 +36,7 @@ function getOne(url) {
 			console.log("writing to", filepath);
 			mkdirp.sync(dirpath);
 			fs.writeFileSync(`${filepath}.html`, txt);
-			setTimeout(nextOne, 500);
+			setTimeout(nextOne, 1000);
 		});
 	});
 }
